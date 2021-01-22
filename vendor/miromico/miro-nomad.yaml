@@ -1,0 +1,123 @@
+name: miro Nomad
+description: Ultra small solar powered GPS tracker
+
+# Hardware versions (optional, use when you have revisions)
+hardwareVersions:
+  - version: '9.0'
+    numeric: 9
+
+# Firmware versions (at least one is mandatory)
+firmwareVersions:
+  - # Firmware version
+    version: '5.3.10'
+    numeric: 1
+    # Corresponding hardware versions (optional)
+    hardwareVersions:
+      - '9.0'
+
+    # LoRaWAN Device Profiles per region
+    # Supported regions are EU863-870, US902-928, AU915-928, AS923, CN779-787, EU433, CN470-510, KR920-923, IN865-867, RU864-870
+    profiles:
+      EU863-870:
+        # Unique identifier of the profile (lowercase, alphanumeric with dashes, max 36 characters)
+        id: tracker-profile
+        lorawanCertified: false
+        codec: tracker-codec
+      US902-928:
+        # Unique identifier of the profile (lowercase, alphanumeric with dashes, max 36 characters)
+        id: tracker-profile
+        lorawanCertified: false
+        codec: tracker-codec
+      AU915-928:
+        # Unique identifier of the profile (lowercase, alphanumeric with dashes, max 36 characters)
+        id: tracker-profile
+        lorawanCertified: false
+        codec: tracker-codec
+      AS923:
+        # Unique identifier of the profile (lowercase, alphanumeric with dashes, max 36 characters)
+        id: tracker-profile
+        lorawanCertified: false
+        codec: tracker-codec
+
+# Sensors that this device features (optional)
+# Valid values are:
+# accelerometer, altitude, analog input, auxiliary, barometer, battery, button, bvoc, co2, current, digital input,
+# distance, dust, energy, gps, gyroscope, humidity, light, link, magnetometer, moisture, ph, pir, power, pressure,
+# proximity, pulse count, pulse frequency, rainfall, rssi, snr, solar radiation, sound, temperature, time, tvoc, uv,
+# velocity, vibration, voltage, water, wifi ssid, wind direction, wind speed.
+sensors:
+  - gps
+  - gyroscope
+  - accelerometer
+  - barometer
+  - battery
+  - temperature
+  - rssi
+  - snr
+  - vibration
+
+# Dimensions in mm (optional)
+# Use width, height, length and/or diameter
+dimensions:
+  width: 29
+  length: 22
+  height: 17
+
+# Weight in grams (optional)
+weight: 12
+
+# Battery information (optional)
+battery:
+  replaceable: no
+  type: LiPo and solar
+
+# Operating conditions (optional)
+operatingConditions:
+  # Temperature (Celcius)
+  temperature:
+    min: -10
+    max: 85
+  # Relative humidity (fraction of 1)
+  relativeHumidity:
+    min: 0
+    max: 0.97
+
+# IP rating (optional)
+ipCode: IP65
+
+# Key provisioning (optional)
+# Valid values are: custom (user can configure keys), join server and manifest.
+keyProvisioning:
+  - custom
+  - join server
+  - manifest
+
+# Key security (optional)
+# Valid values are: none, read protected and secure element.
+keySecurity: read protected
+
+# Product and data sheet URLs (optional)
+productURL: https://miromico.ch/portfolio/mini-gps-tracker/
+dataSheetURL: https://miromico.ch/wp-content/uploads/2019/07/GPS_Tracker_Payload_Format_v1.3.pdf
+
+# Photos
+photos:
+  main: windsensor.jpg
+  other:
+    - windsensor-package.jpg
+
+# Regulatory compliances (optional)
+compliances:
+  safety:
+    - body: IEC
+      norm: EN
+      standard: 62368-1
+  radioEquipment:
+    - body: ETSI
+      norm: EN
+      standard: 301 489-1
+      version: 2.2.0
+    - body: ETSI
+      norm: EN
+      standard: 301 489-3
+      version: 2.1.0
