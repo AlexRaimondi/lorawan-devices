@@ -102,9 +102,7 @@ dataSheetURL: https://miromico.ch/wp-content/uploads/2019/07/GPS_Tracker_Payload
 
 # Photos
 photos:
-  main: windsensor.jpg
-  other:
-    - windsensor-package.jpg
+  main: miro-nomad.jpg
 
 # Regulatory compliances (optional)
 compliances:

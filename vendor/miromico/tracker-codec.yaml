@@ -4,48 +4,47 @@ uplinkDecoder:
   fileName: tracker.js
   # Examples (optional)
   examples:
-    - description: 32 knots from the North
+    - description: Welcome Message
       input:
-        fPort: 1
-        bytes: [0, 32]
+        fPort: 100
+        bytes: [0x01, 0x01, 0x05, 0x03, 0x00, 0x0a, 0x04, 0x39, 0x31, 0x37, 0x33, 0x7e, 0x37, 0x7e, 0x0d]
       output:
         data:
-          direction: 'N'
-          speed: 32
-    - description: 42 knots from the East
+          device_type: 1
+          device_sub_type: 1
+          firmware_major: 5
+          firmware_minor: 3
+          firmware_build: 11
+          reset_source: 4
+
+    - description: Location Message
       input:
-        fPort: 1
-        bytes: [1, 42]
+        fPort: 103
+        bytes: [0x00, 0x02, 0x71, 0x79, 0x00, 0x02, 0x4c, 0x6e, 0x00, 0x39, 0x6f, 0xc4, 0xff, 0xf4, 0x4f, 0x95, 0x00, 0x00, 0x1d, 0x7e]
       output:
         data:
-          direction: 'E'
-          speed: 42
-    - description: Unknown FPort
-      input:
-        fPort: 42
-        bytes: [1, 42]
-      output:
-        errors:
-          - unknown FPort
+          gps_dat: 160121
+          gps_tim: 150638
+          gps_lat: 37.64164
+          gps_lon: -7.66059
+          gps_alt: 75.5
 
 # Downlink encoder encodes JSON object into a binary data downlink (optional)
 downlinkEncoder:
   fileName: tracker.js
   examples:
-    - description: Turn green
+    - description: Send AT command
       input:
-        data:
-          led: green
+        at_command_ascii: "AT\0"
       output:
-        bytes: [1]
-        fPort: 2
-    - description: Invalid color
+        fPort: 220
+        bytes: [0x41, 0x54, 0x00]
+    - description: Send ATZ command (device reset)
       input:
-        data:
-          led: blue
+        at_command_ascii: "ATZ\0"
       output:
-        errors:
-          - invalid LED color
+        fPort: 220
+        bytes: [0x41, 0x54, 0x5a, 0x00]
 
 # Downlink decoder decodes the encoded downlink message (optional, must be symmetric with downlinkEncoder)
 downlinkDecoder:
@@ -53,8 +52,7 @@ downlinkDecoder:
   examples:
     - description: Turn green
       input:
-        fPort: 2
-        bytes: [1]
+        fPort: 220
+        bytes: [0x41, 0x54, 0x00]
       output:
-        data:
-          led: green
+        at_command_ascii: "ATZ\0"
