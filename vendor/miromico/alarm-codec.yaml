@@ -21,7 +21,7 @@ uplinkDecoder:
 
 # Downlink encoder encodes JSON object into a binary data downlink (optional)
 downlinkEncoder:
-  fileName: tracker.js
+  fileName: alarm.js
   examples:
     - description: Turn green
       input:
@@ -40,7 +40,7 @@ downlinkEncoder:
 
 # Downlink decoder decodes the encoded downlink message (optional, must be symmetric with downlinkEncoder)
 downlinkDecoder:
-  fileName: tracker.js
+  fileName: alarm.js
   examples:
     - description: Turn green
       input:
