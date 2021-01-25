@@ -64,6 +64,9 @@ function decodeUplink(input) {
     var z                 = (bytes[32] <<  8 | bytes[33]) >>> 0;
     var battery_mv        = (bytes[34] <<  8 | bytes[35]) >>> 0;
 
+    var dat               = (bytes[ 8] << 24 | bytes[ 9] << 16 | bytes[10] << 8 | bytes[11]) >>> 0;
+    var tim               = (bytes[12] << 24 | bytes[13] << 16 | bytes[14] << 8 | bytes[15]) >>> 0;
+
     // conversion to signed integer (2's complement)
     if (x > 0x7FFF) {
       x = -(0xFFFF - x + 1);
@@ -74,7 +77,6 @@ function decodeUplink(input) {
     if (z > 0x7FFF) {
       z = -(0xFFFF - z + 1);
     }
-
 
     decoded.battery_lorawan   = bytes[36];
     decoded.gps_ttf_s         = bytes[37];
@@ -87,6 +89,9 @@ function decodeUplink(input) {
     decoded.orientation_x_g   = x / 1000.0;
     decoded.orientation_y_g   = y / 1000.0;
     decoded.orientation_z_g   = z / 1000.0;
+
+    decoded.date_yymmdd       = dat;
+    decoded.time_hhmmss       = tim;
   }
 
   if (port === 103) {
